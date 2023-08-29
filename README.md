@@ -2,9 +2,9 @@
 
 # Tech:
 
-React
-Typescript
-Vite
-Material UI
-Redux Toolkit
-Redux Toolkit Query
+## React
+## Typescript
+## Vite
+## Material UI
+## Redux Toolkit
+## Redux Toolkit Query

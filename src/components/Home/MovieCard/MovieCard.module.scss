@@ -1,0 +1,36 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background-color: var(--mantine-color-gray-2);
+}
+
+.image_container {
+  height: min-content;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.image {
+  height: 240px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 500ms;
+}
+
+.image:hover {
+  transform: scale(1.25);
+}
+
+.info {
+  padding: 0.5rem;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
