@@ -1,4 +1,4 @@
-# İnvent Frontend Case
+# Invent Frontend Case
 
 Go for live sample site [website](https://frontend-case-snowy.vercel.app/).
 
