@@ -34,7 +34,7 @@ const CHeader = () => {
           <img src="/logo.svg" width={120} height={120} />
         </Link>
         <Group className={headerStyles.actions}>
-          <YearPickerInput size="xs" placeholder="Select Year" value={year} onChange={handleChangeYear} />
+          <YearPickerInput w={160} size="xs" clearable placeholder="Select Year" value={year} onChange={handleChangeYear} />
           <Select maw={80} size="xs" searchable clearable className={headerStyles.content_select} defaultValue={type} onChange={handleChangeType} placeholder="Select type" data={movieOptions} />
           <TextInput
             placeholder="Search"
