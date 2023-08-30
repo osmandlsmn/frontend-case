@@ -6,7 +6,7 @@ const MovieSectionLoader = () => {
     <Fragment>
       {Array.from({ length: 6 })
         .fill("")
-        .map((item, index) => (
+        .map((_item, index) => (
           <Group key={index} style={{ gap: 6 }}>
             <Skeleton height={220} radius="sm" />
             <Skeleton height={20} radius="sm" />

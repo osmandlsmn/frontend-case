@@ -1,4 +1,4 @@
-import MovieDetailLoader from "@/components/MovieDetail/MovieDetail.Loader";
+import MovieDetailLoader from "@/components/MovieDetail/MovieDetail.loader";
 import detailStyle from "@/components/MovieDetail/MovieDetail.module.scss";
 import { useGetMovieByIdMutation } from "@/store/movie/api";
 import { Badge, Card, CardSection, Container, Group, Image, Rating, Tabs, Text, Title } from "@mantine/core";
@@ -11,7 +11,7 @@ const MovieDetail = () => {
   const { imdbId } = useParams() as { imdbId: string };
   const [getMovieById, { data: movie, isLoading, status }] = useGetMovieByIdMutation();
 
-  const computedGenres = movie?.Genre?.split(",");
+  const computedGenres = movie?.Genre?.split(",") as string[];
 
   useEffect(() => {
     if (status === "fulfilled" && movie?.Response === "False") navigate("/");
