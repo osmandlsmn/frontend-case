@@ -2,12 +2,15 @@ import { Container, Group, Header, Select, TextInput } from "@mantine/core";
 
 import headerStyles from "./Header.module.scss";
 import { IconSearch } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 
 const CHeader = () => {
   return (
     <Header height={60} mb={20}>
       <Container className={headerStyles.header} size="xl">
-        <img src="./logo.svg" width={120} height={120} />
+        <Link to="/">
+          <img src="/logo.svg" width={120} height={120} />
+        </Link>
         <Group className={headerStyles.actions}>
           <Select
             maw={80}

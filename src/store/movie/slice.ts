@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IMovie } from "../../types/global";
 import { MovieApi } from "./api";
+import { IMoviesFilter } from "./interface";
 
 export interface IMovieState {
-  filterValues: {
-    type: IMovie["Type"] | "all";
-    query: string;
-    year: string | null;
+  isLoading: boolean;
+  filterValues: IMoviesFilter;
+  movies: {
+    [key: string]: IMovie[];
   };
-  movies: IMovie[];
 }
 
 const initialState: IMovieState = {
-  movies: [],
+  isLoading: true,
+  movies: {},
   filterValues: {
     type: "all",
     query: "pokemon",
@@ -25,8 +26,19 @@ const MovieSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addMatcher(MovieApi.endpoints.getMovies.matchFulfilled, (state, action) => {
-      state.movies = action.payload.Search;
+    builder.addMatcher(MovieApi.endpoints.getMoviesForSearch.matchPending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addMatcher(MovieApi.endpoints.getMoviesForSearch.matchFulfilled, (state, action) => {
+      state.movies = {};
+      state.isLoading = false;
+      action.payload.Search.forEach((movie) => {
+        const type = movie.Type;
+        if (!state.movies[type]) {
+          state.movies[type] = [];
+        }
+        state.movies[type].push(movie);
+      });
     });
   },
 });

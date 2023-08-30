@@ -4,6 +4,13 @@ export interface IGetMovies extends IBaseResponse {
   Search: IMovie[];
 }
 
-export interface IGetMoviesRequest {
+export interface ITest {
+  username: string;
+  test: number;
+}
+
+export interface IMoviesFilter {
+  type: IMovie["Type"] | "all";
   query: string;
+  year: string | null;
 }

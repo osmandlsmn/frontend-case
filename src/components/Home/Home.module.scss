@@ -5,3 +5,9 @@
   align-items: start;
   gap: 2px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

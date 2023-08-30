@@ -1,29 +1,29 @@
-import { Container, Group, SimpleGrid, Text, Title } from "@mantine/core";
-import MovieCard from "../../components/Home/MovieCard";
-import homeStyles from "../../components/Home/Home.module.scss";
-import { useGetMoviesMutation } from "../../store/movie/api";
+import homeStyles from "@/components/Home/Home.module.scss";
+import MoviesSection from "@/components/Home/MovieSection";
+import { useGetMoviesForSearchMutation } from "@/store/movie/api";
+import { useAppSelector } from "@/utils/hooks";
+import { Container } from "@mantine/core";
 import { useEffect } from "react";
+import useHomeConstants from "./Home.constants";
 
 const Home = () => {
-  const [getMovies, { isLoading }] = useGetMoviesMutation();
+  const { filterValues } = useAppSelector((state) => state.movies);
+  const [getMovies] = useGetMoviesForSearchMutation();
+
+  const movieSections = useHomeConstants();
 
   useEffect(() => {
-    getMovies("");
-  }, []);
+    getMovies(filterValues);
+  }, [filterValues]);
 
   return (
-    <Container py="lg" size="xl">
-      <Group className={homeStyles.header}>
-        <Title order={2}>Movies</Title>
-        <Text size="sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, temporibus?</Text>
-      </Group>
-      <SimpleGrid cols={6} breakpoints={[{ maxWidth: "xl", cols: 1 }]}>
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-      </SimpleGrid>
+    <Container className={homeStyles.container} py="lg" size="xl">
+      {movieSections.map((section) => (
+        <MoviesSection movies={section.data}>
+          <MoviesSection.Title>{section.title}</MoviesSection.Title>
+          <MoviesSection.Description>{section.description}</MoviesSection.Description>
+        </MoviesSection>
+      ))}
     </Container>
   );
 };
