@@ -12,7 +12,7 @@ export interface ITest {
 export interface IMoviesFilter {
   type: IMovie["Type"] | "all";
   query: string;
-  year: string | null;
+  year: Date | null;
 }
 
 export interface IGetMovieById {

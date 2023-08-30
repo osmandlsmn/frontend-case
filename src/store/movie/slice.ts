@@ -1,5 +1,5 @@
+import { IMovie } from "@/types/global";
 import { createSlice } from "@reduxjs/toolkit";
-import { IMovie } from "../../types/global";
 import { MovieApi } from "./api";
 import { IMoviesFilter } from "./interface";
 
@@ -35,14 +35,15 @@ const MovieSlice = createSlice({
     });
     builder.addMatcher(MovieApi.endpoints.getMoviesForSearch.matchFulfilled, (state, action) => {
       state.movies = {};
-      action.payload.Search.forEach((movie) => {
+      state.isLoading = false;
+
+      action.payload?.Search?.forEach((movie) => {
         const type = movie.Type;
         if (!state.movies[type]) {
           state.movies[type] = [];
         }
         state.movies[type].push(movie);
       });
-      state.isLoading = false;
     });
   },
 });

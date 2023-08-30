@@ -8,7 +8,7 @@ export const MovieApi = createApi({
   endpoints: (builder) => ({
     getMoviesForSearch: builder.mutation<IGetMovies, IMoviesFilter>({
       query: ({ query, year, type }) => ({
-        url: `?apikey=486c38b4&s=${query}${year ? `&y=${year}` : ""}${type !== "all" ? `&type=${type}` : ""}`,
+        url: `?apikey=486c38b4&s=${query}${year ? `&y=${year.getFullYear()}` : ""}${type !== "all" ? `&type=${type}` : ""}`,
         method: "GET",
       }),
     }),

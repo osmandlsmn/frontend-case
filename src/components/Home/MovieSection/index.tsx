@@ -8,6 +8,7 @@ import MovieSectionLoader from "./MovieSection.loader";
 
 const MoviesSection = ({ children, movies }: PropsWithChildren<{ movies: IMovie[] }>) => {
   const { isLoading } = useAppSelector((state) => state.movies);
+  console.log(isLoading);
 
   return (
     <Paper>

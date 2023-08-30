@@ -8,18 +8,23 @@ export interface IMovieSection {
 }
 
 const useHomeConstants = (): IMovieSection[] => {
-  const { movie, series } = useAppSelector((state) => state.movies.movies);
+  const { movie, series, episode } = useAppSelector((state) => state.movies.movies);
 
   return [
     {
       title: "Movies",
-      description: "lorem",
+      description: "This section contains information related to movies",
       data: movie,
     },
     {
       title: "Series",
-      description: "lorem",
+      description: "This section includes details about TV series",
       data: series,
+    },
+    {
+      title: "Episode",
+      description: "This section provides information about individual episodes of TV shows.",
+      data: episode,
     },
   ];
 };
