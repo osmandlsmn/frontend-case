@@ -24,14 +24,17 @@ const initialState: IMovieState = {
 const MovieSlice = createSlice({
   name: "movie",
   initialState,
-  reducers: {},
+  reducers: {
+    setFilterValues: (state, action) => {
+      state.filterValues = { ...state.filterValues, ...action.payload };
+    },
+  },
   extraReducers: (builder) => {
     builder.addMatcher(MovieApi.endpoints.getMoviesForSearch.matchPending, (state) => {
       state.isLoading = true;
     });
     builder.addMatcher(MovieApi.endpoints.getMoviesForSearch.matchFulfilled, (state, action) => {
       state.movies = {};
-      state.isLoading = false;
       action.payload.Search.forEach((movie) => {
         const type = movie.Type;
         if (!state.movies[type]) {
@@ -39,9 +42,10 @@ const MovieSlice = createSlice({
         }
         state.movies[type].push(movie);
       });
+      state.isLoading = false;
     });
   },
 });
 
 export default MovieSlice.reducer;
-// export const {} = MovieSlice.actions;
+export const { setFilterValues } = MovieSlice.actions;

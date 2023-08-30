@@ -18,8 +18,8 @@ const Home = () => {
 
   return (
     <Container className={homeStyles.container} py="lg" size="xl">
-      {movieSections.map((section) => (
-        <MoviesSection movies={section.data}>
+      {movieSections.map((section, index) => (
+        <MoviesSection key={index} movies={section.data}>
           <MoviesSection.Title>{section.title}</MoviesSection.Title>
           <MoviesSection.Description>{section.description}</MoviesSection.Description>
         </MoviesSection>

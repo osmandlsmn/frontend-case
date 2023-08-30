@@ -1,5 +1,6 @@
+import { IDetailMovie } from "@/types/global";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IGetMovies, IMoviesFilter } from "./interface";
+import { IGetMovieById, IGetMovies, IMoviesFilter } from "./interface";
 
 export const MovieApi = createApi({
   reducerPath: "movieApi",
@@ -11,7 +12,13 @@ export const MovieApi = createApi({
         method: "GET",
       }),
     }),
+    getMovieById: builder.mutation<IDetailMovie, IGetMovieById>({
+      query: ({ id }) => ({
+        url: `?apikey=486c38b4&s&i=${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetMoviesForSearchMutation } = MovieApi;
+export const { useGetMoviesForSearchMutation, useGetMovieByIdMutation } = MovieApi;

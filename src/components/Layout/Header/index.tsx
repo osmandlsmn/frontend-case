@@ -1,10 +1,20 @@
+import { setFilterValues } from "@/store/movie/slice";
+import { useAppDispatch } from "@/utils/hooks";
 import { Container, Group, Header, Select, TextInput } from "@mantine/core";
-
-import headerStyles from "./Header.module.scss";
+import { useDebouncedState } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons-react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import headerStyles from "./Header.module.scss";
 
 const CHeader = () => {
+  const dispatch = useAppDispatch();
+  const [searchValue, setSearchValue] = useDebouncedState("pokemon", 500);
+
+  useEffect(() => {
+    dispatch(setFilterValues({ query: searchValue }));
+  }, [searchValue]);
+
   return (
     <Header height={60} mb={20}>
       <Container className={headerStyles.header} size="xl">
@@ -24,7 +34,15 @@ const CHeader = () => {
               { value: "ng", label: "Series" },
             ]}
           />
-          <TextInput placeholder="Search" size="xs" icon={<IconSearch size="0.8rem" stroke={1.5} />} rightSectionWidth={70} styles={{ rightSection: { pointerEvents: "none" } }} />
+          <TextInput
+            placeholder="Search"
+            size="xs"
+            defaultValue={searchValue}
+            onChange={(event) => setSearchValue(event.currentTarget.value)}
+            icon={<IconSearch size="0.8rem" stroke={1.5} />}
+            rightSectionWidth={70}
+            styles={{ rightSection: { pointerEvents: "none" } }}
+          />
         </Group>
       </Container>
     </Header>

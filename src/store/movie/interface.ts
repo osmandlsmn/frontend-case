@@ -14,3 +14,7 @@ export interface IMoviesFilter {
   query: string;
   year: string | null;
 }
+
+export interface IGetMovieById {
+  id: string;
+}
