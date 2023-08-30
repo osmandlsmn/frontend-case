@@ -28,10 +28,10 @@ const CHeader = () => {
   };
 
   return (
-    <Header height={60} mb={20}>
-      <Container className={headerStyles.header} size="xl">
+    <Header className={headerStyles.header} height="100%">
+      <Container className={headerStyles.container} size="xl">
         <Link to="/">
-          <img src="/logo.svg" width={120} height={120} />
+          <img src="/logo.svg" width={120} height={60} />
         </Link>
         <Group className={headerStyles.actions}>
           <YearPickerInput w={160} size="xs" clearable placeholder="Select Year" value={year} onChange={handleChangeYear} />

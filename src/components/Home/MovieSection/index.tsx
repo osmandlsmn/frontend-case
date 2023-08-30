@@ -13,7 +13,13 @@ const MoviesSection = ({ children, movies }: PropsWithChildren<{ movies: IMovie[
   return (
     <Paper>
       {movies?.length >= 1 && <Group className={homeStyles.header}>{children}</Group>}
-      <SimpleGrid cols={6} breakpoints={[{ maxWidth: "xl", cols: 4 }]}>
+      <SimpleGrid
+        cols={6}
+        breakpoints={[
+          { maxWidth: "xl", cols: 4 },
+          { maxWidth: "md", cols: 2 },
+        ]}
+      >
         {isLoading ? <MovieSectionLoader /> : movies?.map((movie, index) => <MovieCard {...movie} key={index} />)}
       </SimpleGrid>
     </Paper>

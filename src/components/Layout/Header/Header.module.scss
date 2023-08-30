@@ -1,4 +1,9 @@
 .header {
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,4 +19,17 @@
 
 .content_select {
   max-width: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column !important;
+  }
+  .header {
+    height: 150px !important;
+    margin-bottom: 0px !important;
+  }
+  .actions {
+    margin-bottom: 10px;
+  }
 }
